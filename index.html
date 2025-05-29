@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Greetings Everyone!!!!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Chelsea+Market&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    @font-face {
+      font-family: 'AmsterdamFour';
+      src: url('AmsterdamFour.ttf') format('truetype');
+      font-display: swap;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Chelsea Market", sans-serif;
+      font-size: 34px;
+      background: black;
+      color: white;
+      cursor: none; /* Hide default cursor */
+    }
+
+    .wrapper {
+      position: relative;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .intro {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .section {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero {
+      background-image: url('11/1.png');
+    }
+
+    .section-2 {
+      background-image: url('11/2.png');
+    }
+
+    .section-3 {
+      background-image: url('11/3.png');
+    }
+
+    .section-4 {
+      background-image: url('11/4.png');
+    }
+
+    .section-5 {
+      background-image: url('11/5.png');
+    }
+
+    .image-container {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      overflow: hidden;
+      perspective: 500px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Custom cursor container */
+    #custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      z-index: 9999;
+      transform-origin: center center;
+    }
+
+    #custom-cursor img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="intro">
+      <!-- Intro content here, if needed -->
+    </div>
+
+    <div class="image-container">
+      <img src="Hi everyone2.png" alt="Parallax Background" />
+    </div>
+
+    <div class="content">
+      <section class="section hero"></section>
+      <section class="section section-2"></section>
+      <section class="section section-3"></section>
+      <section class="section section-4"></section>
+      <section class="section section-5"></section>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div id="custom-cursor">
+    <img src="a-vibrant-blue-and-yellow-bird-in-mid-flight-cut-out-stock-png-removebg-preview.png" alt="Flying Bird" />
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Parallax zoom timeline
+    window.addEventListener("load", () => {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top top",
+          end: "+=300%",
+          pin: true,
+          scrub: true
+        }
+      })
+      .to(".image-container img", {
+        scale: 3,
+        z: 250,
+        transformOrigin: "center center",
+        ease: "power1.inOut"
+      });
+    });
+
+    // Custom cursor follow logic
+    const cursor = document.getElementById("custom-cursor");
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.top = e.clientY + "px";
+      cursor.style.left = e.clientX + "px";
+    });
+
+    // Fluttering animation on bird cursor
+    gsap.to("#custom-cursor img", {
+      rotation: 10,
+      scale: 1.05,
+      duration: 0.3,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1
+    });
+  </script>
+</body>
+</html>
