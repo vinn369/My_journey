@@ -65,7 +65,7 @@
     .section-2 { background-image: url('2.png'); }
     .section-3 { background-image: url('3.png'); }
     .section-4 { background-image: url('4.png'); }
-    .section-5 { background-image: url('S.png'); }
+    .section-5 { background-image: url('5.png'); }
 
     .image-container {
       width: 100%;
@@ -130,6 +130,20 @@
       animation: jump 1.5s ease-in-out infinite;
     }
 
+    /* Speaker Button Styling */
+    .glassy-button.speaker {
+      left: calc(50% + 130px);
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      animation: none;
+    }
+
     @keyframes jump {
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -8px); }
@@ -160,6 +174,17 @@
   <button id="scroll-button" class="glassy-button">
     Scroll Down
   </button>
+
+  <!-- Speaker Button -->
+  <button id="speaker-button" class="glassy-button speaker">
+    🔊
+  </button>
+
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="arey_rey.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <!-- Custom Cursor -->
   <div id="custom-cursor">
@@ -225,6 +250,20 @@
       } else {
         scrollBtn.style.opacity = "1";
         scrollBtn.style.pointerEvents = "auto";
+      }
+    });
+
+    // Toggle Speaker
+    const speakerBtn = document.getElementById("speaker-button");
+    const audio = document.getElementById("bg-music");
+
+    speakerBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        speakerBtn.textContent = "🔊";
+      } else {
+        audio.pause();
+        speakerBtn.textContent = "🔇";
       }
     });
   </script>
